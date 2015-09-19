@@ -1,7 +1,20 @@
 # Taxi-Simulation
+
+## Synopsis
+
 Sim­u­lat­ing a Real-World Taxi Cab Com­pany using a Multi Agent-Based Model
 
-The following source codes were created for the course "simulation of complex systems" at Chalmers University of Technology 2012.
+**Author(s):** Matz Johansson Bergström
+
+**Maintainer:** Matz Johansson Bergström <matz.johansson@gmail.com>
+
+**License:** GNU Lesser General Public License (LGPL)
+
+## Description
+
+The following source codes were created for the course "simulation of complex systems" at Chalmers University of Technology 2012. The code simulates a taxi cab company using a multi-agent-based model based on assumptions from a real-world scenario.
+
+Read the report for the assumptions and the conclusions: https://dl.dropboxusercontent.com/u/2546393/Wordpress/reports/Matz%20JB%20-%20Simulation%20of%20Taxi%20Company%20-%2021i12b%7E12.pdf
 
 
 #Prerequisites
