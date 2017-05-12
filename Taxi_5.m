@@ -1,92 +1,4 @@
 
-% Taxi simulator Jan 2012
-% Matz Johansson B. FOCAL-5
-
-
-% Taxi Simulator Nov 2011 - Jan 2012
-% Current version 2/1~12
-% 2011 =======================================================
-% Nov - Created mod^2 matrix and visualizations of the graph
-%   Visualizations of the edges and nodes
-%
-% 15 Dec onward
-%   Fixed a bug with the adjacency matrix
-%   Wrote the report along with coding
-%   Fixed lonely nodes problem
-%
-% Devised rules for edges directions
-%
-% 2012 =======================================================
-% 1/1 - Fixed Zones for the graph and wrote report
-% 2/1 - First tests with agents
-% 3/1  - Fixed zoneID, should test it with other sizes of the graph
-
-% 30/10 Returned to the code. Will add new rules to the city creation
-% algorithm
-% ?? Fixed bugs in NodeID with non-integer inputs (for zone visualization)
-% 12/11 Fixed the city creation bug with loners
-
-
-
-%Todo:
-% * Create a simple simulation to test the real distances
-% * Fix so all the nodes are connected using the theory of the report
-
-% * Fix the size of spAM, it is wrong...done
-% * Use the visualisation code for inspiration of doing this...done
-% * Fix the u and v axes error...?
-% * Fix so an edge cannot exist if there is no node...node
-
-
-%Tips:
-%To test that edge loop prevention is used let poneway be set to 1.0.
-
-
-%{
-RULES:
-
-There must be a frame around the city.
-
-
-When you enter a zone, the node of which you enetered the zone must
-communicate with other nodes. There must consist a loop inside a zone of
-which you can travel without leaving the zone.
-%}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-%{
-Use the predecessors returned by the shortest_paths function.
-For example:
-
-load graphs/clr-25-2.mat
-startnode = 1;
-endnode = 5;
-[d pred] = shortest_paths(A, startnode);
-
-cur = endnode;
-path = [];
-while(true)
-    path = [cur path];
-    if cur == startnode
-        break;
-    end
-    cur = pred(cur);
-end
-
-In this example, path = [1 3 5], which represents the shortest path from
-node 1 to node 5.
-
-%}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%function Taxi_5
-
-
-
 global n b n_zones Dists spAM
 
 clc
@@ -252,10 +164,7 @@ for i=3:2:n-1
             %n_edges = 2 + round(2*rand); %how many edges
             n_edges   = 3;
             prev_dirs = [];%must be guaranteed unique
-            
-            %fprintf(1, '(%d, %d) node:%d', i, j, NodeID([i; j]));%can only
-            %run this if we already ran the code (Dists)
-            
+                 
             for k=1:n_edges %create double direction edges
                 %fprintf(1, '-');
                 %[1,1]
@@ -288,19 +197,6 @@ for i=3:2:n-1
         end
     end
 end
-
-
-
-%According to rule 2, let the ant move around inside a zone and "draw
-%arrows" behind him as he travels. This should emulate the one-way streets.
-%I believe it is enough with one one way street per zone. (see code path_test)
-
-%We can simplify the idea by letting the ant only walk within the "center of
-%a" zone. The definition of the center is defined as follows:
-%Find the rim of a zone, the center nodes is the complement of the rim
-
-%ZoneCenter()
-
 
 
 %create the connections and visualize, store in C
@@ -358,9 +254,6 @@ scale = 1;
 zoneID = @(i, j)  1 + n_zones*(floor( i/(n+1)*n_zones) ) + floor( j/(n+1)*n_zones ); %this code is correct and must be 
 %used because the variables in ZoneID is not setup before run
 
-
-%floor(i/n*n_zones + j/n_zones);
-%Testing the zoneID code (9/11)
 
 %VISUALIZE ZONES:
 if showzones
